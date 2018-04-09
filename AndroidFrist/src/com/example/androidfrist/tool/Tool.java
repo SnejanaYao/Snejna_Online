@@ -1,11 +1,26 @@
 package com.example.androidfrist.tool;
 
+import java.io.BufferedInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.example.androidfrist.ChatActivity;
+
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.os.AsyncTask;
+import android.os.Build;
 
 public class Tool {
 	public static  boolean checkUserName(String isCheck_name) {
@@ -38,6 +53,20 @@ public class Tool {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 		builder.setTitle("系统通知");
 		builder.setMessage("登陆成功！");
+		builder.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialogInterface, int i) {
+
+			}
+		});
+		AlertDialog dialog = builder.create();
+		dialog.show();
+	}
+	
+	public static void showDownLoadDialog(Context context) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		builder.setTitle("系统通知");
+		builder.setMessage("开始下载");
 		builder.setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialogInterface, int i) {
@@ -88,5 +117,56 @@ public class Tool {
 		});
 		AlertDialog dialog = builder.create();
 		dialog.show();
+	}
+	
+
+	
+	/**
+	 * 弹框显示进度条
+	 */
+	public static void showProgressDialogs(Context context) {
+		 final ProgressDialog downLoadDialog = new ProgressDialog(context);
+		 downLoadDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL); //设置进度条样式
+		 downLoadDialog.setCanceledOnTouchOutside(false); //设置点击Dialog外部是否取消Dialog进度条
+		 downLoadDialog.setTitle("提示");
+		 downLoadDialog.setMax(100);
+		 downLoadDialog.show();
+		 new Thread(new Runnable() {
+			@Override
+			public void run() {
+				int i=0;
+				 while(i<100) {
+					 try {
+						Thread.sleep(100);
+						downLoadDialog.incrementProgressBy(1);
+						i++; //每循环一次 i自增;
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				 }
+				 downLoadDialog.dismiss();
+			}
+		}).start();
+	}
+	
+	
+	/**
+	 * @ param上下文用来检查设备的版本和DownloadManager信息
+	 * @如果下载管理器可以用，则返回true
+	 */
+	public static boolean isDownloadManagerAvailable(Context context) {
+	   try {
+	       if (Build.VERSION.SDK_INT< Build.VERSION_CODES.GINGERBREAD) {
+	           return false;
+	       }
+	       Intent intent= new Intent(Intent.ACTION_MAIN);
+	        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+	        intent.setClassName("com.android.providers.downloads.ui", "com.android.providers.downloads.ui.DownloadList");
+	       List<ResolveInfo> list= context.getPackageManager().queryIntentActivities(intent,
+	               PackageManager.MATCH_DEFAULT_ONLY);
+	       return list.size() > 0;
+	   } catch (Exception e) {
+	       return false;
+	   }
 	}
 }
