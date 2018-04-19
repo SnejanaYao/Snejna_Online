@@ -2,6 +2,7 @@ package com.huir.mina.customservice;
 
 
 import java.net.InetSocketAddress;
+import java.util.zip.Inflater;
 
 import org.apache.log4j.Logger;
 import org.apache.mina.core.future.ConnectFuture;
@@ -11,6 +12,7 @@ import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 
+import com.huir.entity.ConnectAPI;
 import com.huir.entity.MinaMsg;
 import com.huir.mina.customtelnet.CustomMinaTelnet;
 
@@ -30,11 +32,25 @@ public class CustomServiceHandler extends IoHandlerAdapter {
 
 	@Override
 	public void messageReceived(IoSession session, Object messsage) throws Exception {
-		MinaMsg msg = (MinaMsg)messsage;
-		LOG.info("messageReceived：   服务端接收到的数据 -----> " +msg.getMsgbody());
-		String body = "Service:连接成功";
-		MinaMsg mina = new MinaMsg(12,body,body.length());
-		session.write(mina);
+		String str = messsage.toString();
+		String[] body = str.split(";");
+		String type =  body[0];
+		int msgType = Integer.parseInt(type);
+		if(msgType == ConnectAPI.SENDMSG_REQ) {
+			String msgBody = body[1];
+			String length = body[2];
+			int msgLength = Integer.parseInt(length);
+			MinaMsg msg = new MinaMsg(msgType, msgBody, msgLength);
+			LOG.info("messageReceived：   服务端接收到的数据 -----> " +msg.getMsgbody());
+			String news = "Service:连接成功";
+			String recevie = ConnectAPI.SENDMSG_REP+";"+news+";"+news.length();
+			session.write(recevie);
+		}else if(msgType == ConnectAPI.HEARTBEAT_REQ) {
+			LOG.info("================接收到心跳包===============" + msgType);
+			String send = "服务端接收到了心跳包";
+			String msg = ConnectAPI.HEARTBEAT_REP+";"+send+";"+send.length();
+			session.write(msg);
+		}
 	}
 
 	@Override
@@ -44,7 +60,7 @@ public class CustomServiceHandler extends IoHandlerAdapter {
 
 	@Override
 	public void sessionClosed(IoSession session) throws Exception {
-		LOG.info("客户端断开连接");
+		LOG.info("服务器断开连接");
 		/*while(true) {
 			Thread.sleep(3000);
 			IoConnector connector = new CustomMinaTelnet().init();

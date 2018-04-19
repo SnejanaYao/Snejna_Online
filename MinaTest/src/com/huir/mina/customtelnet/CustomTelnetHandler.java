@@ -10,6 +10,7 @@ import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 
+import com.huir.entity.ConnectAPI;
 import com.huir.entity.MinaMsg;
 
 public class CustomTelnetHandler extends IoHandlerAdapter {
@@ -28,8 +29,22 @@ public class CustomTelnetHandler extends IoHandlerAdapter {
 
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
-		MinaMsg msg = (MinaMsg)message;
-		LOG.info("messageReceived 客户端接收到的数据 ----->"+msg.getMsgbody());
+		String str = message.toString();
+		String[] body = str.split(";");
+		String type =  body[0];
+		int msgType = Integer.parseInt(type);
+		if(msgType == ConnectAPI.SENDMSG_REP) {
+			String msgBody = body[1];
+			String length = body[2];
+			int msgLength = Integer.parseInt(length);
+			//MinaMsg msg = new MinaMsg(msgType, msgBody, msgLength);
+			LOG.info("messageReceived：   客户端端接收到的数据 -----> " +msgBody);
+			/*String news = "Service:连接成功";
+			String recevie = ConnectAPI.SENDMSG_REP+";"+news+";"+news.length();
+			session.write(recevie);*/
+		}else if(msgType == ConnectAPI.HEARTBEAT_REP) {
+			//LOG.info("================响应心跳包===============" + msgType);
+		}
 	}
 
 	@Override
@@ -39,7 +54,7 @@ public class CustomTelnetHandler extends IoHandlerAdapter {
 
 	@Override
 	public void sessionClosed(IoSession session) throws Exception {
-		LOG.info("服务器断开连接");
+		LOG.info("客户端断开连接");
 	/*	while(true) {
 			Thread.sleep(3000);   
 			IoConnector connector = new CustomMinaTelnet().init();

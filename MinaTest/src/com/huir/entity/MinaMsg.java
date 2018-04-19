@@ -4,7 +4,6 @@ public class MinaMsg {
 	private String msgbody;
 	private int msgType;
 	private int length;
-	
 	public MinaMsg(int msgType,String msgbody,int length) {
 		this.msgbody = msgbody;
 		this.msgType = msgType;

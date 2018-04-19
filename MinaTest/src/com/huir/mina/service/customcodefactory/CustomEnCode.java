@@ -18,12 +18,18 @@ public class CustomEnCode extends ProtocolEncoderAdapter {
 	public void encode(IoSession session, Object message, ProtocolEncoderOutput out) throws Exception {
 		IoBuffer buf = IoBuffer.allocate(100).setAutoExpand(true);
         CharsetEncoder ce = charset.newEncoder();
-        MinaMsg msg =  (MinaMsg)message;
-       	IoBuffer io = buf.putInt(msg.getMsgType());
-       	Logger.getLogger(CustomCodeFactory.class).info("     ------>  " + io.toString());
-       	buf.putInt(msg.getLength());
-       	Logger.getLogger(CustomCodeFactory.class).info("     ------>  " + msg.getMsgbody().length());
-        buf.putString(msg.getMsgbody(),ce);
+        String str = message.toString();
+        
+        Logger.getLogger(CustomEnCode.class).info(str);
+		String[] body = str.split(";");
+		String type =  body[0];
+		String msgBody = body[1];
+		String length = body[2];
+		int msgType = Integer.parseInt(type);
+		int msgLength = Integer.parseInt(length);
+       	buf.putInt(msgType);
+       	buf.putInt(msgLength);
+        buf.putString(msgBody,ce);
         buf.flip();
         out.write(buf);
 	}

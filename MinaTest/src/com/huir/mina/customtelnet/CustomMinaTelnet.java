@@ -5,12 +5,15 @@ import java.net.InetSocketAddress;
 import org.apache.log4j.Logger;
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.service.IoConnector;
+import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.filter.keepalive.KeepAliveFilter;
 import org.apache.mina.filter.keepalive.KeepAliveMessageFactory;
+import org.apache.mina.filter.keepalive.KeepAliveRequestTimeoutHandler;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
 
+import com.huir.entity.ConnectAPI;
 import com.huir.entity.MinaMsg;
 import com.huir.mina.service.customcodefactory.CustomCodeFactory;
 
@@ -23,15 +26,19 @@ public class CustomMinaTelnet {
 	
 	public IoConnector init() {
 		KeepAliveMessageFactory factory = new HreatBeat();
-		KeepAliveFilter filter = new KeepAliveFilter(factory);
-		filter.setForwardEvent(true);//设置是否forward到下一个filter    
-		filter.setRequestInterval(SENDHEART);
+        KeepAliveFilter heartBeat = new KeepAliveFilter(factory,
+                IdleStatus.BOTH_IDLE);
+        /** 是否回发 */
+        heartBeat.setForwardEvent(true);
+        /** 发送频率 */
+        heartBeat.setRequestInterval(15);
+        heartBeat.setForwardEvent(true);//设置是否forward到下一个filter    
 		connector= new NioSocketConnector();
 		connector.setConnectTimeout(30000);
 		connector.setHandler(new CustomTelnetHandler());
 		connector.setDefaultRemoteAddress(new InetSocketAddress(ADRESS, PORT));
-		connector.getFilterChain().addLast("heartbeat", filter);
 		connector.getFilterChain().addLast("code", new  ProtocolCodecFilter(new CustomCodeFactory()));
+		connector.getFilterChain().addLast("heartbeat", heartBeat);
 		return connector;
 	};
 	
@@ -45,9 +52,8 @@ public class CustomMinaTelnet {
 			
 			String sendMsg = "Telnet:发送请求连接消息";
 			int length = sendMsg.length();
-			MinaMsg msg = new MinaMsg(12, sendMsg, length);
-			
-			session.write(msg);
+			String msg = ConnectAPI.SENDMSG_REP+";"+sendMsg+";"+length;
+			session.write("");
 			session.getCloseFuture().awaitUninterruptibly();// 等待连接断开
 		    connector.dispose();
 		    return true;

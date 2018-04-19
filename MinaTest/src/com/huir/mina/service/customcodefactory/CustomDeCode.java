@@ -30,7 +30,7 @@ public class CustomDeCode extends CumulativeProtocolDecoder {
 		//LOG.info("信息  position  "+position +"  limit   "+limit + " capaticy     "+capacity);
 		in.mark();
 		
-		if(type == 12) {
+		if(type >10) {
 			int length = in.getInt();
 			//LOG.info("消息体长度(length)为  ------>  " + length);
 			if(in.remaining() < length){
@@ -41,9 +41,13 @@ public class CustomDeCode extends CumulativeProtocolDecoder {
 			//LOG.info("limit - postion 的运算结果(bodylength)为  ------>  " + (limit - in.position()) + "读取了消息体长度字段后,buffer中剩余的长度(remaining) "+ rea);
 			String msgbody = in.getString(cd);
 			//LOG.info("msg  ------>  " + msgbody);
-			MinaMsg mina = new MinaMsg(type,msgbody,length);
-			
-			out.write(mina);
+			String minaMsg = type+";"+msgbody+";"+length;
+			if(type==15) {
+				session.setAttribute("HEART", minaMsg);
+				LOG.info((String)session.getAttribute("HEART"));
+			}
+			LOG.info(minaMsg + "----->");
+			out.write(minaMsg);
 			if(in.remaining() >0) {
 				LOG.info("数据包过长..........");
 				return true;
