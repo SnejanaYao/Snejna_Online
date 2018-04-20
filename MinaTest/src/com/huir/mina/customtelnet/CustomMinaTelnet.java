@@ -14,7 +14,6 @@ import org.apache.mina.filter.keepalive.KeepAliveRequestTimeoutHandler;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
 
 import com.huir.entity.ConnectAPI;
-import com.huir.entity.MinaMsg;
 import com.huir.mina.service.customcodefactory.CustomCodeFactory;
 
 public class CustomMinaTelnet {
@@ -31,8 +30,8 @@ public class CustomMinaTelnet {
         /** 是否回发 */
         heartBeat.setForwardEvent(true);
         /** 发送频率 */
-        heartBeat.setRequestInterval(15);
-        heartBeat.setForwardEvent(true);//设置是否forward到下一个filter    
+        heartBeat.setRequestTimeoutHandler(KeepAliveRequestTimeoutHandler.LOG);
+        heartBeat.setRequestInterval(60);
 		connector= new NioSocketConnector();
 		connector.setConnectTimeout(30000);
 		connector.setHandler(new CustomTelnetHandler());
@@ -52,8 +51,8 @@ public class CustomMinaTelnet {
 			
 			String sendMsg = "Telnet:发送请求连接消息";
 			int length = sendMsg.length();
-			String msg = ConnectAPI.SENDMSG_REP+";"+sendMsg+";"+length;
-			session.write("");
+			String msg = ConnectAPI.SENDMSG_REQ+";"+sendMsg+";"+length;
+			session.write(msg);
 			session.getCloseFuture().awaitUninterruptibly();// 等待连接断开
 		    connector.dispose();
 		    return true;

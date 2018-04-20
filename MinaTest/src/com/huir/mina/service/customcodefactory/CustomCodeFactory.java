@@ -14,6 +14,4 @@ public class CustomCodeFactory implements ProtocolCodecFactory{
 	public ProtocolEncoder getEncoder(IoSession arg0) throws Exception {
 		return new CustomEnCode();
 	}
-	
-	
 }

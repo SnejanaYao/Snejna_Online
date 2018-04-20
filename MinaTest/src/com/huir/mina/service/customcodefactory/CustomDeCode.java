@@ -42,11 +42,10 @@ public class CustomDeCode extends CumulativeProtocolDecoder {
 			String msgbody = in.getString(cd);
 			//LOG.info("msg  ------>  " + msgbody);
 			String minaMsg = type+";"+msgbody+";"+length;
-			if(type==15) {
+			/*if(type==15) {
 				session.setAttribute("HEART", minaMsg);
 				LOG.info((String)session.getAttribute("HEART"));
-			}
-			LOG.info(minaMsg + "----->");
+			}*/
 			out.write(minaMsg);
 			if(in.remaining() >0) {
 				LOG.info("数据包过长..........");

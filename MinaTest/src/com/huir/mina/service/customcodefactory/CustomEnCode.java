@@ -1,5 +1,6 @@
 package com.huir.mina.service.customcodefactory;
 
+import java.io.ObjectOutputStream.PutField;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
 
@@ -19,8 +20,8 @@ public class CustomEnCode extends ProtocolEncoderAdapter {
 		IoBuffer buf = IoBuffer.allocate(100).setAutoExpand(true);
         CharsetEncoder ce = charset.newEncoder();
         String str = message.toString();
-        
-        Logger.getLogger(CustomEnCode.class).info(str);
+        session.setAttribute("HEART",str);
+        Logger.getLogger(CustomEnCode.class).info(str + "  ---------------> " +session.getAttribute("HEART"));
 		String[] body = str.split(";");
 		String type =  body[0];
 		String msgBody = body[1];

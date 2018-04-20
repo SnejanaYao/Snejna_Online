@@ -1,17 +1,11 @@
 package com.huir.mina.customtelnet;
 
-import java.net.InetSocketAddress;
-
 import org.apache.log4j.Logger;
-import org.apache.mina.core.future.ConnectFuture;
-import org.apache.mina.core.service.IoConnector;
-import org.apache.mina.core.service.IoHandler;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 
 import com.huir.entity.ConnectAPI;
-import com.huir.entity.MinaMsg;
 
 public class CustomTelnetHandler extends IoHandlerAdapter {
 	public static final Logger LOG = Logger.getLogger(CustomTelnetHandler.class);
@@ -33,17 +27,14 @@ public class CustomTelnetHandler extends IoHandlerAdapter {
 		String[] body = str.split(";");
 		String type =  body[0];
 		int msgType = Integer.parseInt(type);
+		LOG.info(msgType);
 		if(msgType == ConnectAPI.SENDMSG_REP) {
 			String msgBody = body[1];
 			String length = body[2];
 			int msgLength = Integer.parseInt(length);
-			//MinaMsg msg = new MinaMsg(msgType, msgBody, msgLength);
 			LOG.info("messageReceived：   客户端端接收到的数据 -----> " +msgBody);
-			/*String news = "Service:连接成功";
-			String recevie = ConnectAPI.SENDMSG_REP+";"+news+";"+news.length();
-			session.write(recevie);*/
 		}else if(msgType == ConnectAPI.HEARTBEAT_REP) {
-			//LOG.info("================响应心跳包===============" + msgType);
+			LOG.info("================响应心跳包===============" );//这里不输出猜测是 进入到了 heatBeat的seesion中所以没有进入handler
 		}
 	}
 

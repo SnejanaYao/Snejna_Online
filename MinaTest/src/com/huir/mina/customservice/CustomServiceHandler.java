@@ -1,20 +1,12 @@
 package com.huir.mina.customservice;
 
-
-import java.net.InetSocketAddress;
-import java.util.zip.Inflater;
-
 import org.apache.log4j.Logger;
-import org.apache.mina.core.future.ConnectFuture;
-import org.apache.mina.core.service.IoConnector;
-import org.apache.mina.core.service.IoHandler;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 
 import com.huir.entity.ConnectAPI;
 import com.huir.entity.MinaMsg;
-import com.huir.mina.customtelnet.CustomMinaTelnet;
 
 public class CustomServiceHandler extends IoHandlerAdapter {
 	public static final Logger LOG = Logger.getLogger(CustomServiceHandler.class);
@@ -46,7 +38,7 @@ public class CustomServiceHandler extends IoHandlerAdapter {
 			String recevie = ConnectAPI.SENDMSG_REP+";"+news+";"+news.length();
 			session.write(recevie);
 		}else if(msgType == ConnectAPI.HEARTBEAT_REQ) {
-			LOG.info("================接收到心跳包===============" + msgType);
+			LOG.info("================接收到心跳包===============" );
 			String send = "服务端接收到了心跳包";
 			String msg = ConnectAPI.HEARTBEAT_REP+";"+send+";"+send.length();
 			session.write(msg);

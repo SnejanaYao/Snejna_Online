@@ -1,7 +1,5 @@
 package com.huir.mina.customtelnet;
 
-import java.util.Arrays;
-
 import org.apache.log4j.Logger;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.keepalive.KeepAliveMessageFactory;
@@ -10,50 +8,47 @@ import com.huir.entity.ConnectAPI;
 
 public class HreatBeat implements KeepAliveMessageFactory {
 	public static final Logger LOG = Logger.getLogger(HreatBeat.class);
-	public static final String HEARTREQUEST ="0x11";
-	public static final String HEARTRESPONES = "0X22";
 	
 	/**
-	 * 返回给服务端的心跳包数据 return 返回结果才是服务端收到的心跳包数据
+	 * 当读写 停止 到达一定时间时  为了保证存活  在这里发送 心跳包消息(客户端发送)
 	 */
 	@Override
 	public Object getRequest(IoSession session) {
 		String msg = "客户端发送心跳包";
 		String send = ConnectAPI.HEARTBEAT_REQ+";"+msg+";"+msg.length();
-		session.write(send);
-		LOG.info("客户端主动发送心跳包");
+		LOG.info("为了生存 ----客户端主动发送心跳包");
 		return send;
 	}
 
 	/**
-	 * 接收到的服务端数据包
+	 * 返回服务端响应的心跳包消息(服务端响应)
 	 */
 	@Override
 	public Object getResponse(IoSession session, Object message) {
-		return null;
+		return session.getAttribute("HEART");
 	}
 
 	/**
-	 * 判断是否是服务端发来的数据包
+	 * 客户端发送心跳包消息
 	 */
 	@Override
 	public boolean isRequest(IoSession session, Object message) {
 		String msg = message.toString();
-	     if(msg.startsWith(ConnectAPI.SENDMSG_REP+"")){
-         LOG.info("接收到服务端心数据包引发心跳事件                 心跳数据包是》》" + message);
+	     if(msg.startsWith(ConnectAPI.HEARTBEAT_REQ+"")){
+         LOG.info("客户端发送心跳包 ------》  " + message);
          return true;
      }
          return false;
 	}
 
 	/**
-	 * 判断发送信息是否是
+	 * 服务端返回的心跳包消息
 	 */
 	@Override
 	public boolean isResponse(IoSession session, Object message) {
 		String msg = message.toString();
-		if(msg.startsWith(ConnectAPI.HEARTBEAT_REQ+"")) {
-			LOG.info("客户端发送数据包中引发心跳事件: " + message);
+		if(msg.startsWith(ConnectAPI.HEARTBEAT_REP+"")) {
+			LOG.info("服务端返回心跳 --------》 : " + message);
 			return true;
 		}
 		return false;
