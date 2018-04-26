@@ -1,6 +1,5 @@
 package com.huir.mina.service.customcodefactory;
 
-import java.io.ObjectOutputStream.PutField;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
 

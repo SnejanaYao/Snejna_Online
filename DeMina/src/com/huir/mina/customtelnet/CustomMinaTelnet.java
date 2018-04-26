@@ -2,8 +2,6 @@ package com.huir.mina.customtelnet;
 
 import java.net.InetSocketAddress;
 
-import javax.sound.midi.MidiDevice.Info;
-
 import org.apache.log4j.Logger;
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.service.IoConnector;
@@ -47,7 +45,7 @@ public class CustomMinaTelnet {
         heartBeat.setRequestTimeoutHandler(KeepAliveRequestTimeoutHandler.LOG);
         heartBeat.setRequestInterval(SENDHEART);
 		connector= new NioSocketConnector();
-		connector.setConnectTimeout(30000);
+		connector.setConnectTimeoutMillis(30000);
 		connector.setHandler(new CustomTelnetHandler());
 		connector.setDefaultRemoteAddress(new InetSocketAddress(ADRESS, PORT));
 		connector.getFilterChain().addLast("code", new  ProtocolCodecFilter(new CustomCodeFactory()));
@@ -86,7 +84,7 @@ public class CustomMinaTelnet {
 				IoSession session = future.getSession();
 				if(session.isConnected()) {
 					LOG.info("客户端连接成功.....");
-					String sendMsg = "Telnet:发送请求连接消息";
+					String sendMsg = "{\"Request\":\"Islogin\",\"Root\":\"{\\\"User_ID\\\":1,\\\"User_Name\\\":null,\\\"CUser_HuaName\\\":null,\\\"CUser_PWD\\\":null,\\\"Token\\\":null,\\\"LoginType\\\":0,\\\"StrErr\\\":\\\"29ac2566e3078e87e3097d3822e50d7\\\"}\",\"Parameter\":null,\"Token\":\"a173850c55004309929a6a643927dd2d\",\"Querycount\":0,\"Number\":null,\"Type\":null}";
 					int length = sendMsg.length();
 					String msg = ConnectAPI.SENDMSG_REQ+";"+sendMsg+";"+length;
 					session.write(msg);

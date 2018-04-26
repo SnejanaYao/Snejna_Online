@@ -33,7 +33,7 @@ public class CustomTelnetHandler extends IoHandlerAdapter {
 			String msgBody = body[1];
 			String length = body[2];
 			int msgLength = Integer.parseInt(length);
-			LOG.info("messageReceived：   客户端端接收到的数据 -----> " +msgBody);
+			LOG.info("messageReceived：   客户端端接收到的数据 -----> " +msgBody + "   msgLength " +msgLength);
 		}else if(msgType == ConnectAPI.HEARTBEAT_REP) {
 			LOG.info("================响应心跳包===============" );//这里不输出猜测是 进入到了 heatBeat的seesion中所以没有进入handler
 		}
