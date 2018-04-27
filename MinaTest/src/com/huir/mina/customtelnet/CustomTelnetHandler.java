@@ -1,5 +1,6 @@
 package com.huir.mina.customtelnet;
 
+
 import org.apache.log4j.Logger;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;
@@ -23,7 +24,9 @@ public class CustomTelnetHandler extends IoHandlerAdapter {
 
 	@Override
 	public void messageReceived(IoSession session, Object message) throws Exception {
-		String str = message.toString();
+		/*
+		 * 自定义消息接收
+		 * String str = message.toString();
 		String[] body = str.split(";");
 		String type =  body[0];
 		int msgType = Integer.parseInt(type);
@@ -35,7 +38,8 @@ public class CustomTelnetHandler extends IoHandlerAdapter {
 			LOG.info("messageReceived：   客户端端接收到的数据 -----> " +msgBody);
 		}else if(msgType == ConnectAPI.HEARTBEAT_REP) {
 			LOG.info("================响应心跳包===============" );//这里不输出猜测是 进入到了 heatBeat的seesion中所以没有进入handler
-		}
+		}*/
+		LOG.info(message.toString());
 	}
 
 	@Override
@@ -45,21 +49,7 @@ public class CustomTelnetHandler extends IoHandlerAdapter {
 
 	@Override
 	public void sessionClosed(IoSession session) throws Exception {
-		LOG.info("客户端断开连接");
-	/*	while(true) {
-			Thread.sleep(3000);   
-			IoConnector connector = new CustomMinaTelnet().init();
-            ConnectFuture future = connector.connect(new InetSocketAddress(ADRESS, PORT));
-            InetSocketAddress adress = (InetSocketAddress) connector.getDefaultRemoteAddress();
-            future.awaitUninterruptibly();// 等待连接创建成功    
-            session = future.getSession();// 获取会话    
-            if(session.isConnected()){    
-				LOG.info("重新连接成功..... ip: " + adress.getHostName() +"    "+adress.getPort() );
-				break;
-			}else {
-				LOG.info("网络有点小异常.......");
-			}
-		}*/
+		LOG.info("断开连接");
 	}
 
 	@Override
@@ -68,14 +58,12 @@ public class CustomTelnetHandler extends IoHandlerAdapter {
 	}
 
 	@Override
-	public void sessionIdle(IoSession arg0, IdleStatus arg1) throws Exception {
-		// TODO Auto-generated method stub
-
+	public void sessionIdle(IoSession session, IdleStatus status) throws Exception {
+		LOG.info("-客户端与服务端连接[空闲] - " + status.toString());  
 	}
 
 	@Override
 	public void sessionOpened(IoSession arg0) throws Exception {
-		// TODO Auto-generated method stub
 
 	}
 

@@ -13,14 +13,13 @@ import org.apache.mina.filter.keepalive.KeepAliveMessageFactory;
 import org.apache.mina.filter.keepalive.KeepAliveRequestTimeoutHandler;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
 
-import com.huir.entity.ConnectAPI;
 import com.huir.mina.service.customcodefactory.CustomCodeFactory;
 
 public class CustomMinaTelnet {
 	public static final Logger LOG = Logger.getLogger(CustomMinaTelnet.class);
-	public static final int PORT = 7485;
-	public static final String ADRESS = "127.0.0.1";
-	public static final int SENDHEART=5 ; //五秒发送一次心跳包
+	public static final int PORT = 8989;
+	public static final String ADRESS = "10.10.10.11";//10.10.10.11  8989
+	public static final int SENDHEART=20; //20秒发送一次心跳包
 	IoConnector connector = null;
 	
 	public IoConnector init() {
@@ -31,13 +30,13 @@ public class CustomMinaTelnet {
         heartBeat.setForwardEvent(true);
         /** 发送频率 */
         heartBeat.setRequestTimeoutHandler(KeepAliveRequestTimeoutHandler.LOG);
-        heartBeat.setRequestInterval(60);
-		connector= new NioSocketConnector();
-		connector.setConnectTimeout(30000);
+        heartBeat.setRequestInterval(SENDHEART);
+        connector= new NioSocketConnector();
+		connector.setConnectTimeoutMillis(30000);
 		connector.setHandler(new CustomTelnetHandler());
 		connector.setDefaultRemoteAddress(new InetSocketAddress(ADRESS, PORT));
 		connector.getFilterChain().addLast("code", new  ProtocolCodecFilter(new CustomCodeFactory()));
-		connector.getFilterChain().addLast("heartbeat", heartBeat);
+		//connector.getFilterChain().addLast("heartbeat", heartBeat);
 		return connector;
 	};
 	
@@ -49,10 +48,10 @@ public class CustomMinaTelnet {
 			future.awaitUninterruptibly();
 			IoSession session = future.getSession();
 			
-			String sendMsg = "Telnet:发送请求连接消息";
+			/*String sendMsg = "Telnet:发送请求连接消息";
 			int length = sendMsg.length();
 			String msg = ConnectAPI.SENDMSG_REQ+";"+sendMsg+";"+length;
-			session.write(msg);
+			session.write(msg);*/
 			session.getCloseFuture().awaitUninterruptibly();// 等待连接断开
 		    connector.dispose();
 		    return true;

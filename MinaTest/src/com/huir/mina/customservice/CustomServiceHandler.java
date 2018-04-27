@@ -24,7 +24,10 @@ public class CustomServiceHandler extends IoHandlerAdapter {
 
 	@Override
 	public void messageReceived(IoSession session, Object messsage) throws Exception {
-		String str = messsage.toString();
+		/*
+		 * 自定义消息的接收
+		 * 
+		 * String str = messsage.toString();
 		String[] body = str.split(";");
 		String type =  body[0];
 		int msgType = Integer.parseInt(type);
@@ -42,7 +45,7 @@ public class CustomServiceHandler extends IoHandlerAdapter {
 			String send = "服务端接收到了心跳包";
 			String msg = ConnectAPI.HEARTBEAT_REP+";"+send+";"+send.length();
 			session.write(msg);
-		}
+		}*/
 	}
 
 	@Override
@@ -52,21 +55,7 @@ public class CustomServiceHandler extends IoHandlerAdapter {
 
 	@Override
 	public void sessionClosed(IoSession session) throws Exception {
-		LOG.info("服务器断开连接");
-		/*while(true) {
-			Thread.sleep(3000);
-			IoConnector connector = new CustomMinaTelnet().init();
-            ConnectFuture future = connector.connect();
-            InetSocketAddress adress = (InetSocketAddress) connector.getDefaultRemoteAddress();
-            future.awaitUninterruptibly();// 等待连接创建成功    
-            session = future.getSession();// 获取会话    
-            if(session.isConnected()){    
-				LOG.info("重新连接成功..... ip: " + adress.getHostName() +"    "+adress.getPort() );
-				break;
-			}else {
-				LOG.info("网络有点小异常.......");
-			}
-		}*/
+		LOG.info("断开连接");
 	}
 
 	@Override
