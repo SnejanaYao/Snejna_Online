@@ -22,7 +22,7 @@
         android:theme="@style/AppTheme" >
         <!-- WelcomeActity -->
         <activity
-            android:name=".ChatActivity" 
+            android:name="com.huir.androidfrist.ChatActivity" 
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,9 +31,9 @@
             </intent-filter>
         </activity>
         
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name="com.huir.androidfrist.MainActivity"></activity>
         
-        <activity android:name=".RegActivity"></activity>
+        <activity android:name="com.huir.androidfrist.RegActivity"></activity>
         
         <!-- <activity android:name=".ChatActivity"></activity> -->
     </application>
