@@ -27,6 +27,7 @@
     	    android:divider="@null"
     	    android:layout_weight="1"
     	    android:footerDividersEnabled="false"
+    	    android:scrollbarThumbVertical="@android:color/transparent" 
     	    android:stackFromBottom="true"
     	    android:orientation="vertical"
     	    />
