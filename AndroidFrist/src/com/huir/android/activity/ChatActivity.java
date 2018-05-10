@@ -7,10 +7,13 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import com.example.androidfrist.R;
+import com.example.androidfrist.R.layout;
 import com.huir.android.entity.Msg;
 import com.huir.android.net.NetService;
+import com.huir.android.record.AudioRecoderUtils;
 
 import android.app.Activity;
 import android.app.DownloadManager;
@@ -30,8 +33,10 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
@@ -46,16 +51,16 @@ public class ChatActivity extends Activity {
 	private String picUrl ="http://img01.mifile.cn/images/accs/xmjsb_11.jpg";  
 	private List<Msg> datas = new ArrayList<Msg>();
 	private EditText et_meg;
-	private Button left,right,download;
+	private Button left,right,download,record;
 	private GradientDrawable gd;
 	private ListView clist;
     private ChatViewAdapter  chatViewAdapter;
     private ProgressDialog dialog;
+    private AudioRecoderUtils audioRecoderUtils; //录音类
     private int strokeColor = Color.parseColor("#6495ED");; //按下按钮时的边框色
     private int fillColor = Color.parseColor("#6495ED");; //按下按钮时的背景色
     private int unstrokeColor =  Color.parseColor("#B0C4DE");//默认状态下的边框色
     private int unfillColor =  Color.parseColor("#B0C4DE");//默认状态下的背景色
-    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -73,6 +78,9 @@ public class ChatActivity extends Activity {
 		download=(Button)findViewById(R.id.btn_download);
 		download.setOnClickListener(new onClick());
 		
+		record = (Button)findViewById(R.id.record);
+		record.setOnTouchListener(new onTouch());
+		
 		clist = (ListView)findViewById(R.id.chatList);
 		chatViewAdapter = new  ChatViewAdapter();
 		clist.setAdapter(chatViewAdapter);
@@ -81,6 +89,13 @@ public class ChatActivity extends Activity {
 		startService(start);
 	}
 	
+	
+	
+	/**
+	 * 点击事件
+	 * @author huir316
+	 *
+	 */
 	class onClick implements OnClickListener{
 
 		@Override
@@ -146,29 +161,6 @@ public class ChatActivity extends Activity {
 		
 	}
 	
-
-	/**
-	 * downloadManager 监听事件
-	 * @param Id
-	 */
-    private void listener(final long Id) {  
-        // 注册广播监听系统的下载完成事件。  
-        IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);  
-        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {  
-            @Override  
-            public void onReceive(Context context, Intent intent) {  
-                long ID = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);  
-                if (ID == Id) {  
-                	Toast toast=Toast.makeText(ChatActivity.this,"下载文件目录在: 手机存储/"+Environment.DIRECTORY_DOWNLOADS+"/com.android.first",Toast.LENGTH_SHORT);
-                	toast.show();
-                }  
-            }  
-        };  
-        registerReceiver(broadcastReceiver, intentFilter);  
-    } 
-	
-	
-	
 	/**
 	 * 当输入文字时 改变按钮颜色
 	 * @author huir316
@@ -177,16 +169,28 @@ public class ChatActivity extends Activity {
 	class changeBtn implements TextWatcher{
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				// TODO Auto-generated method stub
-				left=(Button)findViewById(R.id.btn_left);
-				right=(Button)findViewById(R.id.btn_right);
+				if(et_meg.getText().toString() !="") {
+					// TODO Auto-generated method stub
+					left=(Button)findViewById(R.id.btn_left);
+					right=(Button)findViewById(R.id.btn_right);
 
-			    gd = new GradientDrawable();//创建drawable
-			    gd.setColor(fillColor);
-			    gd.setCornerRadius(50);
-			    gd.setStroke(2,strokeColor);
-			    left.setBackgroundDrawable(gd);
-			    right.setBackgroundDrawable(gd);
+				    gd = new GradientDrawable();//创建drawable
+				    gd.setColor(fillColor);
+				    gd.setCornerRadius(50);
+				    gd.setStroke(2,strokeColor);
+				    left.setBackgroundDrawable(gd);
+				    right.setBackgroundDrawable(gd);
+				}else {
+					left=(Button)findViewById(R.id.btn_left);
+					right=(Button)findViewById(R.id.btn_right);
+
+				    gd = new GradientDrawable();//创建drawable
+				    gd.setColor(unfillColor);
+				    gd.setCornerRadius(50);
+				    gd.setStroke(2,unstrokeColor);
+				    left.setBackgroundDrawable(gd);
+				    right.setBackgroundDrawable(gd);
+				}
 
 			}
 			
@@ -202,10 +206,35 @@ public class ChatActivity extends Activity {
 	}
 	
 	
+	class onTouch implements OnTouchListener {
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+			int num =0;
+			audioRecoderUtils = new AudioRecoderUtils();
+			switch (event.getAction()) {
+			case MotionEvent.ACTION_DOWN:
+				record.setText("松开保存");
+				audioRecoderUtils.startRecord();
+				break;
+
+			case MotionEvent.ACTION_UP:
+				//audioRecoderUtils.stopRecord();
+				chatViewAdapter.addDataToAdapter(new Msg("", 3));
+				chatViewAdapter.notifyDataSetChanged();
+				clist.smoothScrollToPosition(clist.getCount()-1);
+				record.setText("长按录音");
+				break;
+			}
+			return true;
+		}
+		
+	}
+	
+	
+	
 	public class ChatViewAdapter extends BaseAdapter {
 		 private ViewHolder viewHolder;
 		 public ChatViewAdapter() {
-			// TODO Auto-generated constructor stub
 		}
 		 
 		//给adapter添加数据
@@ -240,16 +269,35 @@ public class ChatActivity extends Activity {
 			int type= datas.get(position).getType();
 			String msg = datas.get(position).getMsg();
 			if(type==1){
-				viewHolder.text_left.setText(msg);
-		        viewHolder.left.setVisibility(View.VISIBLE);
-		        viewHolder.right.setVisibility(View.INVISIBLE);
+				l_talk(msg);
 			}
 			else  if(type==2) {
-				viewHolder.text_right.setText(msg);
-				viewHolder.right.setVisibility(View.VISIBLE);
-		        viewHolder.left.setVisibility(View.INVISIBLE);
+				r_talk(msg);
+			}else if(type==3) {
+				voice();
+				viewHolder.voice.setVisibility(View.VISIBLE);
 			}
+			
 			return convertView;
+		}
+		
+		public void l_talk(String msg) {
+			viewHolder.text_left.setText(msg);
+	        viewHolder.left.setVisibility(View.VISIBLE);
+	        viewHolder.right.setVisibility(View.INVISIBLE);
+	        viewHolder.voice.setVisibility(View.INVISIBLE);
+		}
+		
+		public void r_talk(String msg) {
+			viewHolder.text_right.setText(msg);
+			viewHolder.right.setVisibility(View.VISIBLE);
+	        viewHolder.left.setVisibility(View.INVISIBLE);
+	        viewHolder.voice.setVisibility(View.INVISIBLE);
+		}
+		
+		public void voice() {
+	        viewHolder.left.setVisibility(View.INVISIBLE);
+	        viewHolder.right.setVisibility(View.INVISIBLE);
 		}
 		
 	  class ViewHolder {
@@ -258,19 +306,40 @@ public class ChatActivity extends Activity {
 	        public LinearLayout left;
 	        public TextView text_right;
 	        public LinearLayout right;
-
+	        public LinearLayout voice;
 	        public ViewHolder(View rootView) {
 	        	 this.rootView = rootView;
 	             this.text_left = (TextView) rootView.findViewById(R.id.text_left);
 	             this.left = (LinearLayout) rootView.findViewById(R.id.chat_left);
 	             this.text_right = (TextView) rootView.findViewById(R.id.text_right);
 	             this.right = (LinearLayout) rootView.findViewById(R.id.chat_right);
+	             
+	             this.voice = (LinearLayout)rootView.findViewById(R.id.chat_left_vc);
 	        }
 	  	}
 	}
 	
-	
-	private class DownloadFile extends AsyncTask<String, Integer, String> {
+	/**
+	 * downloadManager 监听事件
+	 * @param Id
+	 */
+    private void listener(final long Id) {  
+        // 注册广播监听系统的下载完成事件。  
+        IntentFilter intentFilter = new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE);  
+        BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {  
+            @Override  
+            public void onReceive(Context context, Intent intent) {  
+                long ID = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);  
+                if (ID == Id) {  
+                	Toast toast=Toast.makeText(ChatActivity.this,"下载文件目录在: 手机存储/"+Environment.DIRECTORY_DOWNLOADS+"/com.android.first",Toast.LENGTH_SHORT);
+                	toast.show();
+                }  
+            }  
+        };  
+        registerReceiver(broadcastReceiver, intentFilter);  
+    } 
+    
+    private class DownloadFile extends AsyncTask<String, Integer, String> {
 	    @Override
 	    protected String doInBackground(String... sUrl) {
 	        try {

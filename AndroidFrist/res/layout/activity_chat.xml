@@ -8,15 +8,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.huir.android.activity.MainActivity" >
-    
-    <!-- <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:background="#00ffff"
-        android:textSize="14sp"
-        android:text="聊天"
-         /> -->
-  
+
+
+
         <!-- 聊天界面的消息发送区 -->
         <ListView 
     	    android:id="@+id/chatList"
@@ -32,11 +26,11 @@
     	    android:orientation="vertical"
     	    />
         
-        <TextView
+       <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#898989" />
-	
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,6 +71,14 @@
             android:textColor="#fff" />
     </LinearLayout>
       
-   
+   <Button 
+       android:id="@+id/record"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="@drawable/shape_pressed_color"
+       android:layout_margin="3dp"
+       android:textColor="#fff"
+       android:text="长按录音"
+       />
 
 </LinearLayout>

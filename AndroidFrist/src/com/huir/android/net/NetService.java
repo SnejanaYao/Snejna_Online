@@ -16,8 +16,8 @@ import android.os.Message;
 import android.util.Log;
 
 public class NetService extends Service {
-	private String TAG = "NetService---->";
-	private String THR = "Thread=========";
+	private String TAG = "NetService";
+	private String THR = "Thread";
 		
 	private final int PORT=8989;
 	private final String ADRESS="10.10.10.11";

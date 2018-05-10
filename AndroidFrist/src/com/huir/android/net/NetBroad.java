@@ -10,7 +10,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class NetBroad extends BroadcastReceiver {
-	private final String TAG = "NetBroad ====》";
+	private final String TAG = "NetBroad";
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		String action = intent.getAction();

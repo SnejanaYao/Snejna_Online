@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -16,18 +16,12 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-
-    <style name="CustomDialog" parent="@android:style/Theme.Dialog">  
-    <item name="android:windowFrame">@null</item>  
-        <item name="android:windowIsFloating">true</item>  
-        <item name="android:windowContentOverlay">@null</item>  
-        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>  
-        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>  
-    </style> 
-    
-    <style name="CustomProgressDialog" parent="@style/CustomDialog">  
-        <item name="android:windowBackground">@android:color/transparent</item>  
-        <item name="android:windowNoTitle">true</item>  
-    </style>  
-    
+    <color name="colorRedBg">#fa5148</color>
+    <style name="Theme_audioDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
 </resources>
