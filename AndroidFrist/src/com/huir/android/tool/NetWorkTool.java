@@ -53,7 +53,11 @@ public class NetWorkTool {
 		}
 		return false;
 	}
-	
+	/**
+	 * 判断当前网络状态
+	 * @param context
+	 * @return type
+	 */
 	public static int typeConnected(Context context) {
 			int type=0;
 			ConnectivityManager manager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -97,7 +101,6 @@ public class NetWorkTool {
 			        case TelephonyManager.NETWORK_TYPE_IDEN:
 							type =4; //2G
 							break;
-							
 						}
 					}
 				break;

@@ -5,13 +5,26 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <string name="up_for_cancel">手指上滑，取消发送</string>
-    <string name="want_to_cancle">松开手指，取消发送</string>
-    <string name="time_too_short">录音时间过短</string>
-
-    <string name="long_click_record">长按 录音</string>
-    <string name="hang_up_finsh">松开 结束</string>
-    <string name="release_cancel">松开 取消</string>
+	<!-- 聊天界面  按钮(activity_chat.xml)-->    
+    <string name="chat_left">左边</string>
+    <string name="chat_right">右边</string>
+    <string name="chat_down">下载</string>
+    <!-- 录音按钮文字状态 -->
+    <string name="str_recorder_normal">按住 说话</string>
+    <string name="str_recorder_recoding">松开 结束</string>
+    <string name="str_recorder_want_cancle">松开手指 取消发送</string>
+    <string name="str_recorder_notice_cancle">手指上滑,取消发送</string>
+    <string name="str_recorder_notice_cantsend">松开手指,取消发送</string>
+    <string name="str_recorder_too_short">录音时间太短</string>
+    
+    <!-- 注册界面 (activity_reg.xml) -->
+    <string name="reg_user">用户名:</string>
+    <string name="reg_check_user">输入用户名</string>
+    <string name="reg_pwd">密    码:</string>
+    <string name="reg_check_pwd">输入密码</string>
+    <string name="reg_confirm_pwd">二次确认:	</string>
+    <string name="reg_confirm_check_pwd">二次输入</string>
+    <string name="btn_reg">登陆</string>
     
     <drawable name="MediumPurple">#9370DB</drawable>
     <drawable name="DarkSlateBlue">#483D8B</drawable>

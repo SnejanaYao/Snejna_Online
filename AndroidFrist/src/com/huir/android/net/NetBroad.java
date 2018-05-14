@@ -9,6 +9,11 @@ import android.net.ConnectivityManager;
 import android.util.Log;
 import android.widget.Toast;
 
+/**
+ * 监听网络状态广播
+ * @author huir316
+ *
+ */
 public class NetBroad extends BroadcastReceiver {
 	private final String TAG = "NetBroad";
 	@Override

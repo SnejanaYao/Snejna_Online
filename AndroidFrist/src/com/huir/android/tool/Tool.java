@@ -7,6 +7,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
+/**
+ * 弹框工具类
+ * @author huir316
+ *
+ */
 public class Tool {
 	/**
 	 * 用户名是否符合规则...

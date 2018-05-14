@@ -43,7 +43,7 @@
             android:layout_height="35dp"
             android:layout_margin="5dp"
             android:background="@drawable/shape_upressed_color"
-            android:text="左边"
+            android:text="@string/chat_left"
             android:textColor="#fff" />
 
         <EditText
@@ -58,7 +58,7 @@
             android:layout_height="35dp"
             android:layout_margin="5dp"
             android:background="@drawable/shape_upressed_color"
-            android:text="右边"
+            android:text="@string/chat_right"
             android:textColor="#fff" />
         
         <Button
@@ -67,18 +67,23 @@
             android:layout_height="35dp"
             android:layout_margin="5dp"
             android:background="@drawable/shape_upressed_color"
-            android:text="下载"
+            android:text="@string/chat_down"
             android:textColor="#fff" />
     </LinearLayout>
       
-   <Button 
-       android:id="@+id/record"
+   <com.huir.android.record.AudioRecorderButton
+       android:id="@+id/btn_record"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:background="@drawable/shape_pressed_color"
-       android:layout_margin="3dp"
+       android:layout_marginLeft="20dp"
+       android:layout_marginRight="20dp"
+       android:layout_marginTop="3dp"
+       android:minHeight="0dp"
+       android:gravity="center"
+       android:padding="5dp"
        android:textColor="#fff"
-       android:text="长按录音"
+       android:text="@string/str_recorder_normal"
        />
 
 </LinearLayout>
