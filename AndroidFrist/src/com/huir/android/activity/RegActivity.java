@@ -1,14 +1,9 @@
 package com.huir.android.activity;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.example.androidfrist.R;
 import com.huir.android.tool.Tool;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,18 +17,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class RegActivity extends Activity {
-	EditText name;
-	EditText pwd;
-	EditText confirm_pwd;
-	TextView check_userName;
-	TextView check_userPwd;
-	TextView check_confirm_userPwd;
-	String userName;
-	String userPwd;
-	String userConfrimPwd;
-	Boolean checkUser;
-	Boolean checkPwd;
-	Boolean checkCondfirmPwd;
+	private EditText name;
+	private EditText pwd;
+	private EditText confirm_pwd;
+	private TextView check_userName;
+	private TextView check_userPwd;
+	private TextView check_confirm_userPwd;
+	private String userName;
+	private String userPwd;
+	private String userConfrimPwd;
+	private Boolean checkUser;
+	private Boolean checkPwd;
+	private Boolean checkCondfirmPwd;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -41,10 +36,13 @@ public class RegActivity extends Activity {
 		setContentView(R.layout.activity_reg);
 		name = (EditText) findViewById(R.id.edit_reg_login_name);
 		name.addTextChangedListener(new TextChangedListenerName());
+		
 		pwd = (EditText) findViewById(R.id.edit_reg_login_pwd);
 		pwd.addTextChangedListener(new TextChangedListenerPwd());
+		
 		confirm_pwd = (EditText) findViewById(R.id.edit_reg_confirm_pwd);
 		confirm_pwd.addTextChangedListener(new TextChangedListenerConfirmPwd());
+		
 		Button regLogin = (Button) findViewById(R.id.btn_reg_user);
 		regLogin.setOnClickListener(new onClick());
 	}
@@ -94,7 +92,7 @@ public class RegActivity extends Activity {
 		@Override
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
 			// TODO Auto-generated method stub
-			 confirm_pwd = (EditText) findViewById(R.id.edit_reg_confirm_pwd);
+			confirm_pwd = (EditText) findViewById(R.id.edit_reg_confirm_pwd);
 			pwd = (EditText) findViewById(R.id.edit_reg_login_pwd);
 			check_confirm_userPwd = (TextView) findViewById(R.id.text_reg_check_confirm_userPwd);
 			userConfrimPwd = confirm_pwd.getText().toString();
@@ -170,9 +168,6 @@ public class RegActivity extends Activity {
 						}
 				     }).sendEmptyMessageDelayed(0, 3000); //表示延时三秒进行任务的执行
 				}
-				break;
-
-			default:
 				break;
 			}
 		}

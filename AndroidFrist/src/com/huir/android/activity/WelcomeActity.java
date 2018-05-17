@@ -1,9 +1,5 @@
 package com.huir.android.activity;
 
-
-
-import java.util.TimerTask;
-
 import com.example.androidfrist.R;
 
 import android.app.Activity;
@@ -23,14 +19,12 @@ public class WelcomeActity extends Activity {
          @Override
          public boolean handleMessage(Message arg0) {
            //实现页面跳转
-           startActivity(new Intent(getApplicationContext(),MainActivity.class));
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
             return false;
          }
      }).sendEmptyMessageDelayed(0, 3000); //表示延时三秒进行任务的执行
 	
 	}
-	
-
 	
 	@Override
 	protected void onDestroy() {

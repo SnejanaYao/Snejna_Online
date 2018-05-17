@@ -25,85 +25,114 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int DarkSlateBlue=0x7f02001b;
-        public static final int MediumPurple=0x7f02001a;
+        /**  返回键 点击 
+         */
+        public static final int DarkSlateBlue=0x7f02001c;
         public static final int anim_yuyin_sign=0x7f020000;
         public static final int animation_yuyin=0x7f020001;
+        public static final int btn_normal_blue=0x7f02001b;
         public static final int default_user=0x7f020002;
         public static final int fabuxuanshang_yuyin_def=0x7f020003;
         public static final int ic_launcher=0x7f020004;
         public static final int l=0x7f020005;
         public static final int r=0x7f020006;
         public static final int select_btn_color=0x7f020007;
-        public static final int selector_voice_line=0x7f020008;
-        public static final int selector_voice_line2=0x7f020009;
-        public static final int shape_pressed_color=0x7f02000a;
-        public static final int shape_upressed_color=0x7f02000b;
-        public static final int uilogo=0x7f02000c;
-        public static final int voice_left=0x7f02000d;
-        public static final int welcome=0x7f02000e;
-        public static final int yuyin_cancel=0x7f02000f;
-        public static final int yuyin_gantanhao=0x7f020010;
-        public static final int yuyin_sign1=0x7f020011;
-        public static final int yuyin_sign2=0x7f020012;
-        public static final int yuyin_sign3=0x7f020013;
-        public static final int yuyin_tixing_red=0x7f020014;
-        public static final int yuyin_voice_1=0x7f020015;
-        public static final int yuyin_voice_2=0x7f020016;
-        public static final int yuyin_voice_3=0x7f020017;
-        public static final int yuyin_voice_4=0x7f020018;
-        public static final int yuyin_voice_5=0x7f020019;
+        public static final int selector_btn_title_back=0x7f020008;
+        public static final int selector_voice_line=0x7f020009;
+        public static final int selector_voice_line2=0x7f02000a;
+        public static final int shape_pressed_color=0x7f02000b;
+        public static final int shape_upressed_color=0x7f02000c;
+        public static final int uilogo=0x7f02000d;
+        public static final int voice_left=0x7f02000e;
+        public static final int welcome=0x7f02000f;
+        public static final int yuyin_cancel=0x7f020010;
+        public static final int yuyin_gantanhao=0x7f020011;
+        public static final int yuyin_sign1=0x7f020012;
+        public static final int yuyin_sign2=0x7f020013;
+        public static final int yuyin_sign3=0x7f020014;
+        public static final int yuyin_tixing_red=0x7f020015;
+        public static final int yuyin_voice_1=0x7f020016;
+        public static final int yuyin_voice_2=0x7f020017;
+        public static final int yuyin_voice_3=0x7f020018;
+        public static final int yuyin_voice_4=0x7f020019;
+        public static final int yuyin_voice_5=0x7f02001a;
     }
     public static final class id {
-        public static final int action_settings=0x7f090028;
-        public static final int btn_download=0x7f090004;
-        public static final int btn_left=0x7f090001;
-        public static final int btn_record=0x7f090005;
-        public static final int btn_reg_user=0x7f090020;
-        public static final int btn_right=0x7f090003;
-        public static final int btn_user_login=0x7f090015;
-        public static final int chatList=0x7f090000;
-        public static final int chat_left=0x7f090006;
-        public static final int chat_left_red=0x7f09000e;
-        public static final int chat_left_singer=0x7f09000c;
-        public static final int chat_left_vc=0x7f09000a;
-        public static final int chat_left_voiceLine=0x7f09000b;
-        public static final int chat_left_voicetime=0x7f09000d;
-        public static final int chat_right=0x7f090008;
-        public static final int dm_rl_bg=0x7f090022;
-        public static final int dm_rl_bg2=0x7f090024;
-        public static final int dm_rl_bg3=0x7f090026;
-        public static final int dm_tv_txt=0x7f090023;
-        public static final int dm_tv_txt2=0x7f090025;
-        public static final int dm_tv_txt3=0x7f090027;
-        public static final int edit_login_name=0x7f090010;
-        public static final int edit_login_pwd=0x7f090013;
-        public static final int edit_reg_confirm_pwd=0x7f09001e;
-        public static final int edit_reg_login_name=0x7f090018;
-        public static final int edit_reg_login_pwd=0x7f09001b;
-        public static final int et_meg=0x7f090002;
-        public static final int text_check_userName=0x7f090011;
-        public static final int text_check_userPwd=0x7f090014;
-        public static final int text_left=0x7f090007;
-        public static final int text_login_name=0x7f09000f;
-        public static final int text_login_pwd=0x7f090012;
-        public static final int text_reg=0x7f090016;
-        public static final int text_reg_check_confirm_userPwd=0x7f09001f;
-        public static final int text_reg_check_userName=0x7f090019;
-        public static final int text_reg_check_userPwd=0x7f09001c;
-        public static final int text_reg_confirmLogin_pwd=0x7f09001d;
-        public static final int text_reg_login_name=0x7f090017;
-        public static final int text_reg_login_pwd=0x7f09001a;
-        public static final int text_right=0x7f090009;
-        public static final int uilogo=0x7f090021;
+        public static final int action_settings=0x7f09003f;
+        public static final int btn_download=0x7f090005;
+        public static final int btn_left=0x7f090002;
+        public static final int btn_record=0x7f090006;
+        public static final int btn_reg_user=0x7f09002a;
+        public static final int btn_right=0x7f090004;
+        public static final int btn_user_login=0x7f09001f;
+        public static final int button1=0x7f09002e;
+        public static final int chat=0x7f090000;
+        public static final int chatList=0x7f090001;
+        public static final int chat_image_left_user=0x7f090008;
+        public static final int chat_image_left_vc_user=0x7f09000e;
+        public static final int chat_image_right_user=0x7f09000c;
+        public static final int chat_image_right_vc_user=0x7f090014;
+        public static final int chat_left=0x7f090007;
+        public static final int chat_left_file_bg=0x7f090037;
+        public static final int chat_left_file_image=0x7f090038;
+        public static final int chat_left_file_layout=0x7f090035;
+        public static final int chat_left_file_progressBar=0x7f090039;
+        public static final int chat_left_file_user_image=0x7f090036;
+        public static final int chat_left_red=0x7f090012;
+        public static final int chat_left_singer=0x7f090010;
+        public static final int chat_left_vc=0x7f09000d;
+        public static final int chat_left_voiceLine=0x7f09000f;
+        public static final int chat_left_voicetime=0x7f090011;
+        public static final int chat_right=0x7f09000a;
+        public static final int chat_right_file_bg=0x7f09003b;
+        public static final int chat_right_file_image=0x7f09003c;
+        public static final int chat_right_file_layout=0x7f09003a;
+        public static final int chat_right_file_progressBar=0x7f09003d;
+        public static final int chat_right_file_user_image=0x7f09003e;
+        public static final int chat_right_red=0x7f090018;
+        public static final int chat_right_singer=0x7f090017;
+        public static final int chat_right_vc=0x7f090013;
+        public static final int chat_right_voiceLine=0x7f090015;
+        public static final int chat_right_voicetime=0x7f090016;
+        public static final int chat_text_title=0x7f09002d;
+        public static final int dm_rl_bg=0x7f09002f;
+        public static final int dm_rl_bg2=0x7f090031;
+        public static final int dm_rl_bg3=0x7f090033;
+        public static final int dm_tv_txt=0x7f090030;
+        public static final int dm_tv_txt2=0x7f090032;
+        public static final int dm_tv_txt3=0x7f090034;
+        public static final int edit_login_name=0x7f09001a;
+        public static final int edit_login_pwd=0x7f09001d;
+        public static final int edit_reg_confirm_pwd=0x7f090028;
+        public static final int edit_reg_login_name=0x7f090022;
+        public static final int edit_reg_login_pwd=0x7f090025;
+        public static final int et_meg=0x7f090003;
+        public static final int text_check_userName=0x7f09001b;
+        public static final int text_check_userPwd=0x7f09001e;
+        public static final int text_left=0x7f090009;
+        public static final int text_login_name=0x7f090019;
+        public static final int text_login_pwd=0x7f09001c;
+        public static final int text_reg=0x7f090020;
+        public static final int text_reg_check_confirm_userPwd=0x7f090029;
+        public static final int text_reg_check_userName=0x7f090023;
+        public static final int text_reg_check_userPwd=0x7f090026;
+        public static final int text_reg_confirmLogin_pwd=0x7f090027;
+        public static final int text_reg_login_name=0x7f090021;
+        public static final int text_reg_login_pwd=0x7f090024;
+        public static final int text_right=0x7f09000b;
+        public static final int tool_bar=0x7f09002c;
+        public static final int uilogo=0x7f09002b;
     }
     public static final class layout {
         public static final int activity_chat=0x7f030000;
         public static final int activity_chat_list=0x7f030001;
-        public static final int activity_main=0x7f030002;
-        public static final int activity_reg=0x7f030003;
-        public static final int activity_welcome=0x7f030004;
-        public static final int dialog_manager=0x7f030005;
+        public static final int activity_chat_right=0x7f030002;
+        public static final int activity_main=0x7f030003;
+        public static final int activity_reg=0x7f030004;
+        public static final int activity_welcome=0x7f030005;
+        public static final int activiy_title_bar=0x7f030006;
+        public static final int dialog_manager=0x7f030007;
+        public static final int file_manager=0x7f030008;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -111,21 +140,31 @@ public final class R {
     public static final class string {
         public static final int action_settings=0x7f050002;
         public static final int app_name=0x7f050000;
-        public static final int btn_reg=0x7f050012;
+        public static final int btn_reg=0x7f050018;
         public static final int chat_down=0x7f050005;
         /**  聊天界面  按钮(activity_chat.xml)
          */
         public static final int chat_left=0x7f050003;
         public static final int chat_right=0x7f050004;
         public static final int hello_world=0x7f050001;
-        public static final int reg_check_pwd=0x7f05000f;
-        public static final int reg_check_user=0x7f05000d;
-        public static final int reg_confirm_check_pwd=0x7f050011;
-        public static final int reg_confirm_pwd=0x7f050010;
-        public static final int reg_pwd=0x7f05000e;
+        public static final int reg_check_pwd=0x7f050015;
+        public static final int reg_check_user=0x7f050013;
+        public static final int reg_confirm_check_pwd=0x7f050017;
+        public static final int reg_confirm_pwd=0x7f050016;
+        public static final int reg_pwd=0x7f050014;
         /**  注册界面 (activity_reg.xml) 
          */
-        public static final int reg_user=0x7f05000c;
+        public static final int reg_user=0x7f050012;
+        public static final int str_file_downFail=0x7f05000e;
+        public static final int str_file_downSuccess=0x7f05000d;
+        /**  文件下载文字状态 
+         */
+        public static final int str_file_downloading=0x7f05000c;
+        public static final int str_file_sendFail=0x7f050011;
+        public static final int str_file_sendSuccess=0x7f050010;
+        /**  文件发送文字状态 
+         */
+        public static final int str_file_sending=0x7f05000f;
         /**  录音按钮文字状态 
          */
         public static final int str_recorder_normal=0x7f050006;

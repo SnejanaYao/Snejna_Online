@@ -27,7 +27,7 @@
         <!-- WelcomeActity -->
         <activity
             android:name="com.huir.android.chat.ChatActivity" 
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden"
  	 		android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
             <intent-filter>

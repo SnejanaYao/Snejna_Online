@@ -9,6 +9,7 @@
     <string name="chat_left">左边</string>
     <string name="chat_right">右边</string>
     <string name="chat_down">下载</string>
+    
     <!-- 录音按钮文字状态 -->
     <string name="str_recorder_normal">按住 说话</string>
     <string name="str_recorder_recoding">松开 结束</string>
@@ -16,6 +17,15 @@
     <string name="str_recorder_notice_cancle">手指上滑,取消发送</string>
     <string name="str_recorder_notice_cantsend">松开手指,取消发送</string>
     <string name="str_recorder_too_short">录音时间太短</string>
+    
+    <!-- 文件下载文字状态 -->
+    <string name="str_file_downloading">正在下载</string>
+    <string name="str_file_downSuccess">下载成功</string>
+    <string name="str_file_downFail">下载失败</string>
+    <!-- 文件发送文字状态 -->
+    <string name="str_file_sending">正在发送</string>
+    <string name="str_file_sendSuccess">发送成功</string>
+    <string name="str_file_sendFail">发送失败</string>
     
     <!-- 注册界面 (activity_reg.xml) -->
     <string name="reg_user">用户名:</string>
@@ -26,6 +36,6 @@
     <string name="reg_confirm_check_pwd">二次输入</string>
     <string name="btn_reg">登陆</string>
     
-    <drawable name="MediumPurple">#9370DB</drawable>
+    <drawable name="btn_normal_blue">#00BFFF</drawable> <!-- 返回键 点击 -->
     <drawable name="DarkSlateBlue">#483D8B</drawable>
 </resources>

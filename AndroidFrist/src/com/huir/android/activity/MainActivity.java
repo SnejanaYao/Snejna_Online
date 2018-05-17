@@ -19,14 +19,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-	EditText name ;
-	EditText pwd ;
-	TextView check_userName ;
-	TextView check_userPwd ;
-	String userName ;
-	String userPwd ;
-	Boolean checkName;
-	Boolean checkPwd;
+	private EditText name ;
+	private EditText pwd ;
+	private TextView check_userName ;
+	private TextView check_userPwd ;
+	private String userName ;
+	private String userPwd ;
+	private boolean checkName;
+	private boolean checkPwd;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

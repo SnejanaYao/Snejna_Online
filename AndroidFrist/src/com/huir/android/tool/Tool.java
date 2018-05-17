@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 /**
  * 弹框工具类
@@ -106,4 +108,14 @@ public class Tool {
 		AlertDialog dialog = builder.create();
 		dialog.show();
 	}
+	
+	
+	 // 显示输入法  
+    public static void showInputMethod(View view,Context context) {  
+        InputMethodManager inputMethodManager = (InputMethodManager) context.getApplicationContext()  
+                .getSystemService(Context.INPUT_METHOD_SERVICE);  
+        //同时再使用该方法之前，view需要获得焦点，可以通过requestFocus()方法来设定。  
+        view.requestFocus();  
+        inputMethodManager.showSoftInput(view, inputMethodManager.SHOW_FORCED);  
+    }  
 }
