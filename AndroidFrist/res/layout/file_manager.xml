@@ -61,7 +61,7 @@
                 android:layout_toRightOf="@id/chat_left_file_image"
                 android:maxWidth="50dp"
                 android:text="400.21MB"
-                android:textSize="10dp" />
+                android:textSize="10sp" />
 
             <TextView
                 android:layout_width="50dp"
@@ -71,7 +71,7 @@
                 android:layout_marginTop="50dp"
                 android:maxWidth="50dp"
                 android:text="@string/str_file_sending"
-                android:textSize="10dp" />
+                android:textSize="10sp" />
 
             <ProgressBar
                 android:id="@+id/chat_left_file_progressBar"
@@ -139,7 +139,7 @@
                 android:layout_toRightOf="@id/chat_right_file_image"
                 android:maxWidth="50dp"
                 android:text="400.21MB"
-                android:textSize="10dp" />
+                android:textSize="10sp" />
 
             <TextView
                 android:layout_width="50dp"
@@ -149,7 +149,7 @@
                 android:layout_marginTop="50dp"
                 android:maxWidth="50dp"
                 android:text="@string/str_file_sending"
-                android:textSize="10dp" />
+                android:textSize="10sp" />
 
             <ProgressBar
                 android:id="@+id/chat_right_file_progressBar"

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:orientation="horizontal" >
+    
+    
+    <RelativeLayout 
+        android:id="@+id/show_users_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+        
+          <ImageView
+                android:id="@+id/show_users_iamge"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/default_user" />
+          <TextView 
+              android:id="@+id/show_users_nickname"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:singleLine="true"
+              android:layout_marginTop="3dp"
+              android:ellipsize="end"
+              android:layout_toRightOf="@id/show_users_iamge"
+              android:textStyle="bold"
+              android:text="用户昵称"/>
+          
+          <TextView 
+              android:id="@+id/show_users_message"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:singleLine="true"
+              android:ellipsize="end"
+              android:layout_toRightOf="@id/show_users_iamge"
+              android:layout_marginTop="28dp"
+              android:layout_marginBottom="0dp"
+              android:maxWidth="250dp"
+              android:text="过服务器也就是 传两个用户id 一个语音文件 。。，加密一下  数据库存个档 。。"
+              android:textSize="12sp"
+              />
+          
+          <TextView 
+              android:id="@+id/show_users_date"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:singleLine="true"
+              android:layout_marginTop="3dp"
+              android:ellipsize="end"
+              android:layout_alignParentRight="true"
+              android:text="hh:Ss"
+              android:textSize="12sp"
+              />
+          
+          
+        
+    </RelativeLayout>
+
+</LinearLayout>

@@ -52,7 +52,7 @@
                     android:layout_toLeftOf="@+id/chat_right_voiceLine"
                     android:text="5 &apos;&apos;"
                     android:textColor="#686666"
-                    android:textSize="16dp" />
+                    android:textSize="16sp" />
 				<!-- 小红点 -->
                 <ImageView
                     android:id="@+id/chat_right_red"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tool_bar"
+    android:id="@+id/main_bar"
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:layout_gravity="center_horizontal"
@@ -8,28 +8,16 @@
     android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/chat_text_title"
+            android:id="@+id/main_text_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="30dp"
             android:ellipsize="marquee"
             android:gravity="center_horizontal|center"
             android:singleLine="true"
-            android:text="@string/str_bar_chat_user"
+            android:text="@string/str_bar_main_tile"
             android:textColor="#FFFFFFFF"
             android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="30dp"
-            android:background="@null"
-            android:button="@drawable/selector_btn_title_back"
-            android:gravity="center"
-            android:text="@string/str_bar_chat_return"
-            android:textColor="#FFFFFFFF"
-            android:textSize="15sp" />
 
         <Button
             android:layout_width="60dp"
@@ -42,8 +30,7 @@
             android:ellipsize="end"
             android:gravity="center"
             android:singleLine="true"
-            android:text="@string/str_bar_chat_info"
             android:textColor="#FFFFFFFF"
-            android:textSize="15sp" />
+            android:textSize="15dp" />
 
 </RelativeLayout>

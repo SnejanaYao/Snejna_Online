@@ -26,6 +26,17 @@
     <string name="str_file_sending">正在发送</string>
     <string name="str_file_sendSuccess">发送成功</string>
     <string name="str_file_sendFail">发送失败</string>
+   	<!-- 标题头文字 -->
+    <string name="str_bar_chat_user">用户</string>
+    <string name="str_bar_chat_return">返回</string>
+    <string name="str_bar_chat_info">详细信息</string>
+    <string name="str_bar_main_tile">惠瑞</string>
+    
+    <string name="str_navigation_chat">聊天</string>
+    <string name="str_navigation_friend">联系人</string>
+    <string name="str_navigation_app">应用</string>
+    <string name="str_navigation_settings">我</string>
+    
     
     <!-- 注册界面 (activity_reg.xml) -->
     <string name="reg_user">用户名:</string>

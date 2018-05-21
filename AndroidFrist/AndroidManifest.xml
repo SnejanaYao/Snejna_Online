@@ -41,7 +41,8 @@
         
         <activity android:name="com.huir.android.activity.RegActivity"></activity>
         
-        <!-- <activity android:name=".ChatActivity"></activity> -->
+        <!-- <activity android:name="com.huir.android.activity.ChatActivity"></activity> -->
+       <!--  <activity android:name="com.huir.android.activity.tab.TabActivity"></activity> -->
         <service android:name="com.huir.android.net.NetService"></service>
     </application>
 

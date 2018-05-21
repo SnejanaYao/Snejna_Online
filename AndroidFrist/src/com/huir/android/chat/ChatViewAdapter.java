@@ -61,7 +61,7 @@ public class ChatViewAdapter extends BaseAdapter {
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		if(convertView ==null) {
-			 convertView=LayoutInflater.from(context).inflate(R.layout.activity_chat_list,null);
+			 convertView=LayoutInflater.from(context).inflate(R.layout.item_activity_chat,null);
 	         viewHolder = new ViewHolder(convertView);  
 	         convertView.setTag(viewHolder);
 		}else {
