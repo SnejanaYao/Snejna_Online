@@ -4,36 +4,49 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.androidfrist.R;
+import com.huir.android.chat.ChatActivity;
+import com.huir.android.entity.UserShow;
 import com.huir.android.tool.KeyboardUtil;
 
+import android.R.integer;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
-public class TabActivity extends Activity implements OnClickListener {
+public class TabActivity extends Activity implements OnClickListener,OnItemClickListener {
 	private ViewPager viewPager; //viewPager
 	private List<View> vlist = new ArrayList<View>();
+	private List<UserShow> ulist = new ArrayList<UserShow>();
+	private ShowUsersAdapater sadapater;
+	private ListView listChat;
 	private PagerAdapter pageAdapter; //pager适配器
 	private LinearLayout messageTab;
 	private LinearLayout friendTab;
 	private LinearLayout appTab;
 	private LinearLayout settingsTab;
+	
 	private ImageButton chatImage;
 	private ImageButton friImage;
 	private ImageButton appImage;
 	private ImageButton setImage;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +110,7 @@ public class TabActivity extends Activity implements OnClickListener {
 	 */
 	public void initView() {
 		viewPager =(ViewPager) findViewById(R.id.tab_view_pager);
+		
 		messageTab = (LinearLayout) findViewById(R.id.navigation_chat);
 		friendTab = (LinearLayout) findViewById(R.id.navigation_friend);
 		appTab = (LinearLayout) findViewById(R.id.navigation_app);
@@ -145,6 +159,12 @@ public class TabActivity extends Activity implements OnClickListener {
 		};
 		
 		viewPager.setAdapter(pageAdapter);
+		
+		sadapater = new ShowUsersAdapater(ulist, message.getContext());
+		listChat = (ListView)message.findViewById(R.id.user_show_chat_list);
+		listChat.setAdapter(sadapater);
+	    sadapater.addDataToAdapter(new UserShow(0, 0, "用户名昵称", null, "", "10:01"));
+	    listChat.setOnItemClickListener(this);
 	}
 
 	@Override
@@ -178,5 +198,12 @@ public class TabActivity extends Activity implements OnClickListener {
 		friImage.setImageResource(R.drawable.friend_iamge_normal);
 		appImage.setImageResource(R.drawable.app_iamge_normal);
 		setImage.setImageResource(R.drawable.settings_image_normal);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		Intent intent = new Intent();
+		intent.setClass(TabActivity.this, ChatActivity.class);
+		startActivity(intent);
 	}
 }

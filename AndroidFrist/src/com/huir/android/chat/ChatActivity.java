@@ -84,8 +84,10 @@ public class ChatActivity extends Activity{
 	          getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);  //透明状态栏  
 	          getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);   //透明导航栏  
 	     }
+		
 		View contentView = getLayoutInflater().inflate(R.layout.activity_chat, null);
 		setContentView(contentView);
+		
 		new KeyboardUtil(this, contentView); 
 		et_meg = (EditText)findViewById(R.id.et_meg);
 		et_meg.addTextChangedListener(new changeBtn());

@@ -111,7 +111,6 @@ public class ChatViewAdapter extends BaseAdapter {
 	            	MediaManager.playSound(entity.getPath(),new MediaPlayer.OnCompletionListener() {
 						@Override
 						public void onCompletion(MediaPlayer mp) {
-							// TODO Auto-generated method stub
 							animation.selectDrawable(0);//显示动画第一帧
 							animation.stop();
 

@@ -37,6 +37,15 @@
     <string name="str_navigation_app">应用</string>
     <string name="str_navigation_settings">我</string>
     
+     <string name="str_app_email">我的邮件</string>
+    <string name="str_app_message">我的消息</string>
+    <string name="str_app_found">找群找人</string>
+    
+    <string name="str_fri_department">我的部门</string>
+    <string name="str_fri_adresslist">通讯录</string>
+    <string name="str_fri_group">个人群组</string>
+    <string name="str_fri_company">企业框架</string>
+    
     
     <!-- 注册界面 (activity_reg.xml) -->
     <string name="reg_user">用户名:</string>
