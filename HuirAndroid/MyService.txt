@@ -1,0 +1,162 @@
+private String TAG = "MsgService-------->";
+private Strinf TH ="Thread============";
+
+private int port = 9090; //端口号
+private Intent intentMessage = new  Intent("sendMessage"); //发送消息
+private Intent intentState = newIntent("sendState");//发送当前状态
+
+
+private Socket socket;
+private byte num;
+private String line;
+private OutputStream  outPutStream;
+private InputStream inPutStream;
+private boolean readThreadFlag = true;  //读取线程
+private static boolean Flag103=true;  //判断心跳包
+
+private final int STATE_CONNECT = 1; //连接状态标识符
+private final int STATE_SEND =2; //发送信息标识符
+
+private boolean flagConnect = false; //连接判断
+private boolean canSend = true;   //可以发送消息
+
+
+
+private Handlr  mHandler = new Handlr(){
+	public void handleMessage(Message msg){
+		if(msg.what == STATE_CONNECT){
+		  if(((String)msg.obj).equals("success")){
+			flagConnect=true;
+			serverRead(); //连接成功后进行粘包断包处理
+		 }else{
+			flagConnect = false;
+		 }	
+		}else if(msg.what == STATE_SEND){
+			cansend = true;
+		}
+	}
+}
+
+/**
+*service创建的时候调用socketConnect方法 建立socket连接
+*/
+@Overrid
+public void  onCreate(){
+        System.Out.Print(TAG+"onCreate....");
+	super.OnCreate();
+	socckectConnect(ip,port);
+}
+
+/**
+*
+*开始服务(可以开始多次服务)
+*/
+@Overrid
+public void onStarCommand(Intent intent,int flags,int startId){
+	System.Out.Print(TAG+"onCommand,,,");
+	//一开始服务就将Flag103 心跳包设置为true;
+	Flag103 = true;
+	if(FlagConnect){
+		
+	}
+	
+}
+
+/**
+*
+*获取socket连接
+*/
+public void socketConnect(final String ip,final String port){
+	socket = new Socket();
+	new Thread(){
+	    @Override
+	    public void run(){
+	try{
+		SocketAdress sockectAdress = new  IntentSocketAdress(ip,port); //创建一个socket地址
+		socket.connect(sockectAdress,5000); //建立连接
+		
+		Message m = Message.obtain(mHandler);
+		m.what = STATE_CONNECT;
+		m.obj="success";
+	        m.sendToTarget();
+		
+		intentState.putExtra("connect","connect success");
+		sendBroadcast(intentState);
+	}catch(IOException e){
+		e.printStackTrace();
+		Message m = Message.obtain(mHandler);
+		m.what = STATE_CONNECT;
+		m.obg="error";
+	        m.sendToTarget(); // 完成发送消息的动作 
+		
+		intentState.putExtra("connect","connect erro");
+		sendBroadcast(intentState);
+    }				
+  }
+ }.star();	
+}
+
+/**
+*
+*处理粘包断包
+*/
+public  void saveRead(){
+	new Thread(){
+	   @Ovvride
+	   public void run(){
+		byte[] isread = null;//用来装读取到的数据
+		while(readThreadFlag){
+		  try{
+		line = null;
+		inPutStream = socket.getInPutStream();//获得网络连接输入
+		int lenth = inPutStream.available();//读取输入流的长度
+		if(length<=0){
+		sleep(1000);
+	 }else{
+		byte[] receive = new byte[length];//定义一个数组接收传过来的流
+		inPutStream.read(receive,0,length); //inPutStream流将 数据读取到recevice数组中
+		if(isread !=null){
+	  }
+	while(Flag103){
+	  if(receive[0] ==-103){
+		System.Out.Print("接收到心跳包--->"+new String(recevice,"UTF-8"));
+		if(lenth>1){
+		byte[] saveRecevie = new byte[length-1]; //去掉心跳包标识符后的长度
+		byte[] type = recevice; //
+		System.arraycopy(type，1，saveRecevie，saveRecevie.length);
+		recevice = saveRecevice; //将去掉心跳包后的数组赋值给原生获取数字流的数组
+		length = length -1; //减掉心跳包后的长度 方便下面解码
+	    }
+		continue ;
+	   }
+		System.Out.Print("读取数据开始解码...");
+		byte command = recevice[0]// 获取标识位
+		num = command;
+		int len = recevie[1]; //字符串长度
+		String realRead = new String(recevice,2,len,"utf-8"); //数组下标第二位才是字符串的存储位置
+		int readLens = Integer.paseInt(realRead);  //转换六进制
+		System.Out.Print("...数据对比...");
+		if(2+len+reaLens>recevice.length){
+			System.Out.Print("数据没读完整，继续读取");
+}
+				 
+	  }
+	 }
+	}catch(IOException){
+	}
+		
+   }		
+  }
+ }
+}
+
+
+
+
+
+
+
+
+
+
+

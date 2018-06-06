@@ -1,0 +1,50 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+       <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    
+    <color name="clolorBule">#00BFFF</color>
+    <color name="colorGray">#999999</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="coclorRed">#9d0a0f</color>
+    <color name="coclorLightRed">#ee1d24</color>
+    <color name="coclorCloseWhite">#fafafa</color>
+    <color name="coclorBabyBlue">#B0C4DE</color>
+    <color name="coclorLightBabyBlue">#6495ED</color>
+    <color name="coclorBorderLine">#e0e0e0</color>
+    <color name="coclorVoiceNumber">#686666</color>
+    <color name="coclorTitleBackGround">#00BFFF</color>
+    
+    
+    
+    
+    <style name="Theme_audioDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    
+    <style name="Theme_exitDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item> <!-- 背景颜色是否变暗 -->
+    </style>
+    
+</resources>
